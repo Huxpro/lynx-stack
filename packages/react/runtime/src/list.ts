@@ -229,7 +229,7 @@ export const __pendingListUpdates = {
   clear(id: number): void {
     delete this.values[id];
   },
-  clearAll(): void {
+  clearAttachedLists(): void {
     Object.values(this.values)
       .map(update => update.getAttachedListId())
       .filter(id => id !== undefined)
