@@ -23,16 +23,6 @@ function updateListItemPlatformInfo(
 
   // @ts-ignore
   const list = ctx.__parent;
-  console.log(
-    'updateListItemPlatformInfo',
-    ctx.__snapshot_def.isListHolder,
-    list?.__snapshot_def.isListHolder,
-    ctx.__id,
-    list?.__id,
-    list?.__snapshot_def.isListHolder,
-    newValue,
-    oldValue,
-  );
   if (list?.__snapshot_def.isListHolder) {
     (__pendingListUpdates.values[list.__id] ??= new ListUpdateInfoRecording(list)).onSetAttribute(
       ctx,
@@ -41,7 +31,7 @@ function updateListItemPlatformInfo(
     );
   }
 
-  if (ctx.__elements && ctx.__snapshot_def.isListHolder) {
+  if (ctx?.__elements && ctx?.__snapshot_def?.isListHolder) {
     __pendingListUpdates.values[ctx.__id]?.flush();
   }
 

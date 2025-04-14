@@ -72,10 +72,11 @@ export class ListUpdateInfoRecording implements ListUpdateInfo {
     //   __SetAttribute(listElement, "update-list-info", pendingAttribute);
     //   __FlushElementTree(listElement);
     // });
-    console.log('update-list-info', this.__toAttribute());
-    // const attr = __GetAttributes(listElement);
-    // console.log('__GetAttributeso', attr);
-    __SetAttribute(listElement, 'update-list-info', this.__toAttribute());
+
+    const listAttr = __GetAttributes(listElement);
+    if (!listAttr['update-list-info']) {
+      __SetAttribute(listElement, 'update-list-info', this.__toAttribute());
+    }
 
     __UpdateListCallbacks(
       listElement,
@@ -227,7 +228,7 @@ export const __pendingListUpdates = {
     this.values = {};
   },
   flush(): void {
-    console.log('flush',Object.values(this.values).length);
+    console.log('flush', Object.values(this.values).length);
     Object.values(this.values)
       .map(update => update.flush())
       .filter(id => id !== undefined)
