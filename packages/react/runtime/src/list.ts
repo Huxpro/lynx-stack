@@ -7,6 +7,7 @@ import type { SnapshotInstance } from './snapshot.js';
 
 export interface ListUpdateInfo {
   flush(): number | undefined;
+  getAttachedListId(): number | undefined;
   onInsertBefore(
     newNode: SnapshotInstance,
     existingNode?: SnapshotInstance,
@@ -73,16 +74,20 @@ export class ListUpdateInfoRecording implements ListUpdateInfo {
     //   __FlushElementTree(listElement);
     // });
 
-    const listAttr = __GetAttributes(listElement);
-    if (!listAttr['update-list-info']) {
-      __SetAttribute(listElement, 'update-list-info', this.__toAttribute());
-    }
+    __SetAttribute(listElement, 'update-list-info', this.__toAttribute());
 
     __UpdateListCallbacks(
       listElement,
       componentAtIndexFactory(this.list.childNodes),
       enqueueComponentFactory(),
     );
+    return this.list.__id;
+  }
+
+  getAttachedListId(): undefined | number {
+    if (!this.list.__elements) {
+      return undefined;
+    }
     return this.list.__id;
   }
 
@@ -225,10 +230,12 @@ export const __pendingListUpdates = {
     delete this.values[id];
   },
   clearAll(): void {
-    this.values = {};
+    Object.values(this.values)
+      .map(update => update.getAttachedListId())
+      .filter(id => id !== undefined)
+      .forEach(id => this.clear(id));
   },
   flush(): void {
-    console.log('flush', Object.values(this.values).length);
     Object.values(this.values)
       .map(update => update.flush())
       .filter(id => id !== undefined)

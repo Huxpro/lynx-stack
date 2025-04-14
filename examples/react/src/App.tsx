@@ -59,7 +59,7 @@ export function App() {
                       border: 'solid 2px rgb(255, 255, 255)',
                     }}
                   >
-                    <text>Hello, Lynx</text>
+                    <text>{`list-item2-${index}-${index2}`}</text>
                   </list-item>
                 );
               })}
