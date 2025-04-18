@@ -33,6 +33,7 @@ function updateListItemPlatformInfo(
 
   if (ctx?.__elements && ctx?.__snapshot_def?.isListHolder) {
     __pendingListUpdates.values[ctx.__id]?.flush();
+    __pendingListUpdates.clear(ctx.__id);
   }
 
   // In this updater, unlike `updateSpread`, the shape of the value is guaranteed to be an fixed object.

@@ -28,7 +28,7 @@ export function App() {
       }}
       custom-list-name={'list-container'}
     >
-      {Array.from({ length: 5 }).map((_, index) => {
+      {Array.from({ length: 11 }).map((_, index) => {
         return (
           <list-item
             item-key={`list-item-${index}`}
@@ -38,32 +38,39 @@ export function App() {
               height: '30vh',
             }}
           >
-            <list
-              scroll-orientation='horizontal'
-              style={{
-                width: '100%',
-                height: '100%',
-                backgroundColor: 'rgb(60, 179, 113)',
-              }}
-              custom-list-name={'list-container'}
+            <view
+            style={{
+              width: '100%',
+              height: '100%',
+            }}
             >
-              {Array.from({ length: 5 }).map((_, index2) => {
-                return (
-                  <list-item
-                    item-key={`list-item2-${index}-${index2}`}
-                    key={`list-item2-${index}-${index2}`}
-                    style={{
-                      width: '30vw',
-                      height: '50%',
-                      backgroundColor: 'rgb(43, 141, 240)',
-                      border: 'solid 2px rgb(255, 255, 255)',
-                    }}
-                  >
-                    <text>{`list-item2-${index}-${index2}`}</text>
-                  </list-item>
-                );
-              })}
-            </list>
+              <list
+                scroll-orientation='horizontal'
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  backgroundColor: 'rgb(60, 179, 113)',
+                }}
+                custom-list-name={'list-container'}
+              >
+                {Array.from({ length: 11 }).map((_, index2) => {
+                  return (
+                    <list-item
+                      item-key={`list-item2-${index}-${index2}`}
+                      key={`list-item2-${index}-${index2}`}
+                      style={{
+                        width: '30vw',
+                        height: '50%',
+                        backgroundColor: 'rgb(43, 141, 240)',
+                        border: 'solid 2px rgb(255, 255, 255)',
+                      }}
+                    >
+                      <text>{`list-item2-${index}-${index2}`}</text>
+                    </list-item>
+                  );
+                })}
+              </list>
+            </view>
           </list-item>
         );
       })}
