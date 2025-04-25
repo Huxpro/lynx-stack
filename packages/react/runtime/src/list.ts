@@ -296,6 +296,7 @@ export function componentAtIndexFactory(ctx: SnapshotInstance[]): ComponentAtInd
       if (recycleSignMap?.has(sign)) {
         signMap.set(sign, childCtx);
         recycleSignMap.delete(sign);
+        __pendingListUpdates.flush();
         __FlushElementTree(root, { triggerLayout: true, operationID, elementID: sign, listID });
         return sign;
       } else {
@@ -311,6 +312,7 @@ export function componentAtIndexFactory(ctx: SnapshotInstance[]): ComponentAtInd
       hydrate(oldCtx, childCtx);
       oldCtx.unRenderElements();
       const root = childCtx.__element_root!;
+      __pendingListUpdates.flush();
       if (enableReuseNotification) {
         __FlushElementTree(root, {
           triggerLayout: true,
@@ -339,6 +341,7 @@ export function componentAtIndexFactory(ctx: SnapshotInstance[]): ComponentAtInd
     const root = childCtx.__element_root!;
     __AppendElement(list, root);
     const sign = __GetElementUniqueID(root);
+    __pendingListUpdates.flush();
     __FlushElementTree(root, {
       triggerLayout: true,
       operationID,
@@ -390,6 +393,32 @@ export function snapshotCreateList(
     {},
   );
   const listID = __GetElementUniqueID(list);
+  if (!__pendingListUpdates.values[_ctx.__id] && _ctx.childNodes.length > 0) {
+    const insertions: { position: number; type: string }[] = [];
+    for (let i = 0; i < _ctx.childNodes.length; i++) {
+      const childCtx = _ctx.childNodes[i]!;
+      const newValue = childCtx.__listItemPlatformInfo;
+      insertions.push({
+        ...newValue,
+        position: i,
+        type: childCtx.type,
+      });
+    }
+    const a = {
+      insertAction: insertions,
+      removeAction: [],
+      updateAction: [],
+    };
+    // console.log('__pendingListUpdates0', JSON.stringify(__pendingListUpdates.values[_ctx.__id]));
+
+    console.log('__pendingListUpdates1', JSON.stringify(a));
+    __SetAttribute(list, 'update-list-info', a);
+    __UpdateListCallbacks(
+      list,
+      componentAtIndexFactory(_ctx.childNodes),
+      enqueueComponentFactory(),
+    );
+  }
   gSignMap[listID] = signMap;
   gRecycleMap[listID] = recycleMap;
   return list;
