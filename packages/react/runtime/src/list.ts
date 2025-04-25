@@ -409,9 +409,6 @@ export function snapshotCreateList(
       removeAction: [],
       updateAction: [],
     };
-    // console.log('__pendingListUpdates0', JSON.stringify(__pendingListUpdates.values[_ctx.__id]));
-
-    console.log('__pendingListUpdates1', JSON.stringify(a));
     __SetAttribute(list, 'update-list-info', a);
     __UpdateListCallbacks(
       list,
