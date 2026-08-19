@@ -28,7 +28,9 @@ interface LynxTailwindEarlyAdoption {
   perspective: ResolvableTo<KeyValuePair>;
 }
 
-interface LynxCustomFields {}
+interface LynxCustomFields {
+  flowTolerance: ResolvableTo<KeyValuePair>;
+}
 
 type LynxThemeConfig =
   & Omit<ThemeConfig, keyof LynxThemeOverrides>

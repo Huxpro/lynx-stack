@@ -28,6 +28,7 @@ export const LYNX_PLUGIN_ENTRIES: readonly LynxPluginEntry[] = [
 
   ['visibility', P.visibility],
   ['display', P.display],
+  ['flowTolerance', P.flowTolerance],
   ['position', P.position],
   ['inset', P.inset],
 

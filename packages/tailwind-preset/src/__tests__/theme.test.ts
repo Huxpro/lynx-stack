@@ -9,6 +9,7 @@ describe('lynxTheme', () => {
   it('is a plain object with expected theme keys', () => {
     expect(typeof lynxTheme).toBe('object');
     expect(lynxTheme).toHaveProperty('boxShadow');
+    expect(lynxTheme).toHaveProperty('flowTolerance');
     expect(lynxTheme).toHaveProperty('transitionProperty');
     expect(lynxTheme).toHaveProperty('zIndex');
   });
@@ -20,6 +21,17 @@ describe('lynxTheme', () => {
         expect(value).not.toMatch(/rgb\(\d+ \d+ \d+ ?\/ ?[\d.]+/);
       }
     }
+  });
+});
+
+describe('lynxTheme flowTolerance', () => {
+  it('includes keyword and length tokens', () => {
+    expect(lynxTheme.flowTolerance).toMatchObject({
+      normal: 'normal',
+      infinite: 'infinite',
+      0: '0px',
+      4: '4px',
+    });
   });
 });
 

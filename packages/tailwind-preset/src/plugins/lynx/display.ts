@@ -10,6 +10,7 @@ export const display: Plugin = createPlugin(({ addUtilities }) => {
     {
       '.flex': { display: 'flex' },
       '.grid': { display: 'grid' },
+      '.grid-lanes': { display: 'grid-lanes' },
       '.hidden': { display: 'none' },
       '.display-relative': { display: 'relative' },
       '.linear': { display: 'linear' },

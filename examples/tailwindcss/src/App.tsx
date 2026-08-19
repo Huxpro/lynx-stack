@@ -4,6 +4,7 @@ import { Section } from './components/index.js';
 import { ColorTokensDemo } from './demos/color-tokens.js';
 import { EffectsDemo } from './demos/effects.js';
 import { FlexboxGridDemo } from './demos/flexbox-grid.js';
+import { GridLanesDemo } from './demos/grid-lanes.js';
 import { LayoutDemo } from './demos/layout.js';
 import { TextDemo } from './demos/text.js';
 import { TransformDemo } from './demos/transform.js';
@@ -40,6 +41,13 @@ export function App() {
           description='Align Content, Justify Content, Grid column, Grid Row'
         >
           <FlexboxGridDemo />
+        </Section>
+
+        <Section
+          title='Experimental Grid Lanes'
+          description='Opt-in masonry utilities for projects that enable the matching engine feature.'
+        >
+          <GridLanesDemo />
         </Section>
 
         <Section
