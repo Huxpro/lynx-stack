@@ -144,6 +144,7 @@ const supportedProperties: string[] = [
   'flexBasis',
   'flexDirection',
   'flexFlow',
+  'flowTolerance',
   'flexGrow',
   'flexShrink',
   'flexWrap',

@@ -3,6 +3,7 @@
 // LICENSE file in the root directory of this source tree.
 
 export { display } from './display.js';
+export { flowTolerance } from './flowTolerance.js';
 export { position } from './position.js';
 export { textDecoration } from './textDecoration.js';
 export { rotate } from './rotate.js';

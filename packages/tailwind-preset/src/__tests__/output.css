@@ -293,6 +293,26 @@
   display: grid;
 }
 
+.grid-lanes {
+  display: grid-lanes;
+}
+
 .hidden {
   display: none;
+}
+
+.flow-tolerance-0 {
+  flow-tolerance: 0px;
+}
+
+.flow-tolerance-4 {
+  flow-tolerance: 4px;
+}
+
+.flow-tolerance-infinite {
+  flow-tolerance: infinite;
+}
+
+.flow-tolerance-normal {
+  flow-tolerance: normal;
 }

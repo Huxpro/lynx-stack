@@ -77,6 +77,15 @@ export const lynxTheme: Partial<LynxThemeConfig> & {
     // Not supported in Lynx
     // min: 'min-content',
   },
+  flowTolerance: {
+    normal: 'normal',
+    infinite: 'infinite',
+    0: '0px',
+    1: '1px',
+    2: '2px',
+    4: '4px',
+    8: '8px',
+  },
   aspectRatio: {
     square: '1 / 1',
     video: '16 / 9',
